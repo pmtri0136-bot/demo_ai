@@ -4,6 +4,7 @@ import com.example.demo.dto.UserDto;
 import com.example.demo.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
@@ -12,12 +13,13 @@ public interface UserMapper {
         if (user == null) {
             return null;
         }
-        UserDto dto = new UserDto();
-        dto.setId(user.getId());
-        dto.setUserName(user.getUserName());
-        dto.setFirstName(user.getFirstName());
-        dto.setLastName(user.getLastName() == null ? null : user.getLastName().toUpperCase());
-        dto.setEmail(user.getEmail());
-        return dto;
+        return new UserDto(
+            user.getId(),
+            user.getUserName(),
+            user.getFirstName(),
+            user.getLastName() == null ? null : user.getLastName().toUpperCase(),
+            user.getProsCompany(),
+            user.getEmail()
+        );
     }
 }
