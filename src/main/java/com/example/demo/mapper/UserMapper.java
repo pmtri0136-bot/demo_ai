@@ -8,6 +8,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
-    @Mapping(target = "lastName", expression = "java(user.getLastName().toUpperCase())")
+    @Mapping(target = "lastName", expression = "java(user.getLastName() == null ? null : user.getLastName().toUpperCase())")
     UserDto toDto(User user);
 }
