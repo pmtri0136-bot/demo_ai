@@ -22,8 +22,4 @@ git commit -m "$COMMIT_MSG"
 
 git push origin $BRANCH
 
-gh pr create \
-  --title "$TICKET" \
-  --body "Auto generated from ticket $TICKET_ID" \
-  --base main \
-  --head $BRANCH
+gh pr create --title "$TICKET" --body "Auto generated from ticket $TICKET_ID" --base main --head $BRANCH
