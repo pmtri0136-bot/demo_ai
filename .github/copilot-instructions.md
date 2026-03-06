@@ -6,10 +6,11 @@ Whenever a request or task is given, the generated code **must strictly follow t
 Apply the fix directly to the files.
 
 # Copilot Agent Rules
+Only trigger the automatic bug-fix workflow when the user message
+strictly matches the following format:
 
-When the user writes a message in the following format:
-
-JIRA-XXXX <short title>
+JIRA-XXXX
+<short title>
 description: <bug description>
 
 Example:
@@ -18,21 +19,14 @@ JIRA-1234
 Bug when load all user
 description: NPE when call toUppercase
 
-You must perform the following steps automatically:
+If the message does NOT follow this format,
+treat the request as a normal coding task and DO NOT:
 
-1. Analyze the bug description.
-2. Search the repository to locate the bug.
-3. Implement a fix in the correct files.
-4. Ensure the code compiles.
-5. Stage the changes using git.
-6. Run the following command:
-
-bash create-pr.sh "<ticket-id>" "<title>"
-
-Example command:
-
-bash create-pr.sh "JIRA-1234" "Bug when load all user"
-
+- modify git
+- stage changes
+- commit
+- create a PR
+- run any shell scripts
 ---
 
 # 1. Project Architecture
