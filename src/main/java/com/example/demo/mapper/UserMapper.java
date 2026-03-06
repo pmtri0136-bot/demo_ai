@@ -18,6 +18,8 @@ public interface UserMapper {
             user.getUserName(),
             user.getFirstName(),
             user.getLastName() == null ? null : user.getLastName().toUpperCase(),
+            user.getProsCompany(),
+            user.getCompanyId(),
             user.getEmail()
         );
     }

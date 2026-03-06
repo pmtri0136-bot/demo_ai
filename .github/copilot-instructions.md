@@ -6,29 +6,15 @@ Whenever a request or task is given, the generated code **must strictly follow t
 Apply the fix directly to the files.
 
 # Copilot Agent Rules
-Only trigger the automatic bug-fix workflow when the user message
-strictly matches the following format:
+The AI is allowed to automatically apply fixes and make repository changes when implementing requested code changes.
 
-JIRA-XXXX
-<short title>
-description: <bug description>
+Behavior:
 
-Example:
+- The agent should apply fixes directly to the source files without requiring the user to manually "keep" edits.
+- The agent may perform git operations (stage, commit, and create a PR) when appropriate for the workflow.
+- If a user provides a JIRA-style message block, the agent should use it to populate commit/PR metadata. The presence of such a block is optional and not required to trigger automatic application.
 
-JIRA-1234
-Bug when load all user
-description: NPE when call toUppercase
-
-If the message does NOT follow this format,
-treat the request as a normal coding task and DO NOT:
-
-- modify git
-- stage changes
-- commit
-- create a PR
-- run any shell scripts
----
-
+If repository-specific policies or human review processes exist (outside this file), the agent should still respect them; otherwise prefer applying changes directly to move work forward.
 # 1. Project Architecture
 
 The project **must follow the MVC architecture pattern**.
