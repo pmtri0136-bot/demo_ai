@@ -30,9 +30,6 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "pros_company")
-    private String prosCompany;
-
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 }
